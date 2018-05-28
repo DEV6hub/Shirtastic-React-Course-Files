@@ -1,0 +1,154 @@
+nav {
+    background-color: #FFFFFF;
+    height: 80px;
+    box-shadow: 0 5px 6px -6px #777;
+}
+
+.mr-2{
+    border: 0 !important;
+    min-width: 30px;
+    color: #274686 !important;
+}
+
+.nav-logo {
+    width: 280px;
+}
+
+.nav-toggle-btn {
+    margin-left: -10px !important;
+    align-items: center;
+}
+
+.input-shirt-title {
+    margin-right: 30px;
+    color: #10A2DC;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.vr {
+    height: 54px;
+    width: 1px;
+    border: 0.5px solid #E2E2E2;
+    margin-right: 20px;
+}
+
+.cart-btn-container {
+    margin: 0 !important;
+    align-items: center;
+}
+
+.cart-btn {
+    margin: 0 !important;
+    margin-right: 6px !important;
+    height: 30px;
+    cursor: pointer;
+}
+
+.nav-icon-basket {
+    width: 30px;
+    content: url('../../images/icon-basket.svg') ;
+    margin-right: 15px;
+}
+
+.cart-count {
+    background-color: #10A2DC;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.nav-btn {
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+/* Side nav Cart */
+.sidenav-cart, .sidenav-shipping, .sidenav-payment, .sidenav-confirmation {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #F0F0F0; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
+    border-right: 0.5px solid #CDCDCD;
+}
+
+div.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+
+
+.sidenav-shipping div .shipping-title {
+    color: #274686;
+    font-size: 26px;
+    font-weight: 800;
+    margin-top: -5px;
+    padding-top: 0;
+    margin-bottom: 0;
+}
+
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.cart-overlay,.shipping-overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 385px; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    right: 385px;
+    bottom: 0;
+    background-color: rgba(211, 213, 214, 0.5);   /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    transition: 0.2s;
+}
+
+@media only screen and (min-width: 500px) {
+    .fluid-container {
+        padding-left: 100px !important;
+    }
+}
+
+/* Sidenav media queries */
+@media only screen and (min-width: 500px) {
+    .sidenav-cart, .sidenav-shipping, .sidenav-payment {
+        max-width: 385px;
+    }
+
+    .sidenav-confirmation {
+        max-width: 600px;
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .sidenav-confirmation {
+        max-width: 800px;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .sidenav-confirmation {
+        max-width: 1200px;
+    }
+}

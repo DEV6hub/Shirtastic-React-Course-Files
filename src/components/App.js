@@ -1,0 +1,31 @@
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import './App.css';
+import Home from '../containers/Home';
+import Catalog from '../containers/Catalog';
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Route 
+            exact 
+            path="/" 
+            render={() => (<Home />)}
+          >
+          </Route>
+          <Route 
+            exact 
+            path="/catalog" 
+            render={() => (<Catalog />)}
+          >
+          </Route>
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;

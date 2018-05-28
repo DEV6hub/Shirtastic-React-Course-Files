@@ -1,0 +1,67 @@
+.card{
+    max-width:418px;
+    padding: 10px;
+    margin:10px;
+    border-radius: 15px !important;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26) !important;
+}
+
+.img-fluid{
+    margin-bottom: 10px;
+}
+
+.card-title {
+    margin-top: 0.75rem;
+    font-size: 18px;
+    font-weight: 700;
+    color: #10A2DC;
+}
+
+.container{
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 12px;
+    color: #444444;
+}
+
+.btn-row{
+    height: 30px;
+    justify-content: space-between;
+}
+
+.text {
+    font-size: 20px;
+    color: #444444;
+}
+
+.icon-basket {
+    content: url('../../images/icon-basket.svg');
+    cursor: pointer;
+}
+
+.icon-edit {
+    content: url('../../images/icon-edit.svg');
+    cursor: pointer; 
+}
+
+
+.shirt-graphic-img, .shirt-text-final {
+    position: absolute;
+}
+
+.shirt-graphic-img {
+    left: 27%;
+    top: 12%;
+    width: 180px;
+    
+}
+
+.shirt-text-final {
+    left: 34%;
+    top: 38%;
+    font-size: 25px;
+    text-align: center;
+    width: 120px;
+}

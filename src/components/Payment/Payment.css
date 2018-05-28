@@ -1,0 +1,48 @@
+.payment-container {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.payment-container label {
+    color: #888888;
+}
+.payment-title {
+    color: #274686;
+    font-size: 26px;
+    font-weight: 800;
+    padding-top: 20px;
+}
+
+.total-title {
+    color: #444444;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.total-price {
+    color: #10A2DC;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.sub-title {
+    color:#BCBCBC;
+    font-size: 16px;
+    font-weight: 400;
+}
+.amount {
+    color: #444444;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.price-row {
+    justify-content: space-between;
+}
+.price-row .col {
+    flex-grow: 0;
+}
+
+.payment-container .primary-btn {
+    margin-top: 20px;
+}

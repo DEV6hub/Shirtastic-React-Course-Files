@@ -1,0 +1,56 @@
+button {
+    min-width: 135px;
+    height: 35px;
+    border-radius: 18px;
+}
+
+.hr {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white;
+}
+
+.hr > span {
+    position: relative;
+    display: inline-block;
+}
+
+.hr > span:before,
+.hr > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: white;
+}
+
+.hr > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.hr > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.facebook-icon {
+    width: 10px;
+    margin-right: 12px;
+    margin-left: -10px;
+    margin-top: -2px;
+}
+
+.twitter-icon {
+    width: 18px;
+    margin-right: 20px;
+    margin-left: -10px;
+    margin-top: -2px;
+}
+
+form {
+    margin-top: 10px;
+}

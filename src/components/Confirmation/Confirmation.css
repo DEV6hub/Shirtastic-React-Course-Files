@@ -1,0 +1,29 @@
+.confirmation-container {
+    height: 100%;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+.confirmation-title {
+    color: #274686;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.confirmation-shirt-icon {
+    display: grid;
+    width: 114px;
+    height: 114px;
+    background-color: #10A2DC;
+    justify-self: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 72px;
+    margin-bottom: 30px;
+}
+
+.confirmation-shirt-icon .img-fluid {
+    width: 79px;
+}

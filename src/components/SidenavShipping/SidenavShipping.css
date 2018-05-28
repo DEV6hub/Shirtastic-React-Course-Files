@@ -1,0 +1,35 @@
+.sidenav-shipping-container {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.sidenav-shipping-container label {
+    color: #888888;
+}
+
+.sidenav-shipping-title {
+    color: #274686;
+    font-size: 26px;
+    font-weight: 800;
+    padding-top: 20px;
+}
+.sidenav-shipping-container .primary-btn {
+    margin-top: 10px;
+}
+
+/* This class keeps the row height from getting overridden from Home.css */
+.row-item{
+    height: auto;
+}
+
+@media only screen and (max-width: 700px) {
+    /* For mobile phones and tablets: */
+    .shipping-col {
+        max-width: 100% !important;
+        flex: none !important;
+    }
+
+    input {
+        min-width: 200px !important;
+    }
+}

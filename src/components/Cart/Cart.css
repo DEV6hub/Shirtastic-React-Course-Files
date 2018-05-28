@@ -1,0 +1,41 @@
+.cart-container {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.cart-header {
+    padding-top: 20px;
+}
+
+.cart-header .cart-btn {
+    margin-top: 5px !important;
+    margin-right: -5px !important;
+}
+
+.cart-btn-row {
+    height: 30px;
+}
+
+.cart-title {
+    color: #274686;
+    font-size: 26px;
+    font-weight: 800;
+    margin-right: 35px;
+}
+
+.cart-container .primary-btn {
+    float: right;
+}
+
+.subtotal {
+    color: #444444;
+    font-size: 16px;
+    float: right;
+    font-weight: 700;
+    margin-bottom: 30px;
+    min-width: 157px;
+}
+
+span {
+    font-size: 24px;
+}

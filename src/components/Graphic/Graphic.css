@@ -1,0 +1,35 @@
+.graphic-container {
+    padding-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    background-color: #FFFFFF;
+}
+
+.graphic-title {
+    color: #10A2DC;
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    padding-left: 10px;
+}
+
+.graphic-row {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0!important;
+}
+
+.graphic-div {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    margin: 3px;
+    padding: 8px;
+}
+
+.graphic-div.active {
+    border: 2px solid #10A2DC;
+    padding: 7px;
+}

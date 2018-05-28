@@ -1,0 +1,13 @@
+.text-container {
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    background-color: #FFFFFF;
+}
+.text-lbl {
+    color: #10A2DC;
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 15px;
+}

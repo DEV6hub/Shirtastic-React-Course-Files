@@ -1,0 +1,41 @@
+.color-picker-container {
+    padding-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    background-color: #FFFFFF;
+}
+
+.color-picker-title {
+    color: #10A2DC;
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    padding-left: 10px;
+}
+
+.color-picker-row {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0!important;
+}
+
+.color-div {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid #DDDDDD;
+    margin: 8px;
+}
+
+.color-div.active {
+    border: 2px solid #10A2DC;
+}
+
+.color-name {
+    color: #444444;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}

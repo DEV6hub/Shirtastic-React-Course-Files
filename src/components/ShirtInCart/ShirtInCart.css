@@ -1,0 +1,90 @@
+.shirt-in-cart-img {
+    background-color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #CDCDCD;
+    border-radius: 4px;
+}
+
+.btn-close {
+    min-width: 22px;
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    padding: 3px;
+}
+
+.shirt-in-cart-middle {
+    margin-left: 15px;
+    margin-right: -15px;
+}
+
+.shirt-in-cart-title {
+    color: #10A2DC;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.shirt-in-cart-description {
+    color: #444444;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.size-select {
+    color: #10A2DC !important;
+    font-weight: bold;
+    font-size: 12px !important;
+    width: 174px !important;
+}
+
+.quantity-row {
+    margin-left: 0 !important;
+    align-items: center;
+}
+.quantity{
+    color: #274686;
+    font-weight: bold;
+    font-size: 12px;
+    width: 30px !important;
+    margin-right: 10px;
+    text-align: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.price-txt {
+    color: #444444;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.shirt-in-cart-title {
+    margin-bottom: 5px;
+}
+
+.shirt-in-cart-description, .size-select {
+    margin-bottom: 10px;
+}
+
+.cart-shirt-graphic-img, .cart-shirt-text-final {
+    position: absolute;
+}
+.cart-shirt-graphic-img {
+    left: 36%;
+    top: 16%;
+    width: 32px;
+}
+
+.cart-shirt-text-final {
+    left: 41%;
+    top: 41%;
+    font-size: 5px;
+    text-align: center;
+    width: 20px;
+}

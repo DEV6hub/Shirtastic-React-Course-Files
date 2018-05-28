@@ -1,0 +1,20 @@
+h2 {
+    padding-top: 20px;
+}
+
+/* This class keeps the row height from getting overridden from Home.css */
+.row-item{
+    height: auto;
+}
+
+@media only screen and (max-width: 700px) {
+    /* For mobile phones and tablets: */
+    .shipping-col {
+        max-width: 100% !important;
+        flex: none !important;
+    }
+
+    input {
+        min-width: 200px !important;
+    }
+}
