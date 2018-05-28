@@ -7,8 +7,8 @@ import Shirt from '../Shirt/Shirt';
 
 class CatalogTabs extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.toggle = this.toggle.bind(this);
         this.addToCart = this.addToCart.bind(this);
         this.editShirt = this.editShirt.bind(this);
@@ -35,7 +35,6 @@ class CatalogTabs extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <Container fluid className="fluid-container">
                 <Nav tabs className="catalog-tabs">

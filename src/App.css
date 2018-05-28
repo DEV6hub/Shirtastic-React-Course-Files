@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Caveat|Cookie|Dancing+Script|Gloria+Hallelujah|Indie+Flower|Kaushan+Script|Libre+Barcode+39|Lora|Open+Sans|Orbitron|Pacifico|Roboto|Sacramento');
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.App {
+  font-family: 'Montserrat', sans-serif;
+  color: #FFFFFF;
+}
+
+h2 {
+  font-size: 30px !important;
+  font-weight: 900 !important;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Rounded Buttons */
+.primary-btn {
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 9px 30px;
+  min-width: 144px;
+  height: 35px;
+  border-radius: 18px;
+  background-color: #10A2DC;
+  color: #FFFFFF;
+  outline: 0;
+  border: 0;
+  transition-duration: 0.4s;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.2s;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  margin-bottom: 5px;
+}
+
+.primary-btn:hover {
+  background-color: #00B7FF;
+}
+
+.primary-btn:focus, .primary-btn:active:focus, .primary-btn.active:focus {
+  outline: 0;
+}
+
+.primary-btn.active, .primary-btn:active {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  transition-delay: 0s;
+}

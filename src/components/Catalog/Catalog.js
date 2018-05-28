@@ -10,12 +10,14 @@ import Confirmation from '../Confirmation/Confirmation';
 import Design from '../Design/Design';
 import CatalogTabs from '../CatalogTabs/CatalogTabs';
 
+import { shirtList } from '../Models/ShirtListModel';
+
 const navLogo = require('../../images/navlogo.png');
 
-export default class Catalog extends Component {
+class Catalog extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.openCart = this.openCart.bind(this);
         this.closeCart = this.closeCart.bind(this);
@@ -39,6 +41,7 @@ export default class Catalog extends Component {
         this.state = {
             activeTab: '1',
             showConfirmation: false,
+            shirtList: shirtList,
             shirtsInCart: [],
             total: 0,
             openDesign: false,
@@ -57,10 +60,6 @@ export default class Catalog extends Component {
             },
             action: ''
         };
-    }
-
-    componentDidMount() {
-        this.props.actions.fetchShirts();
     }
 
     handleOutsideClick = (e) => {
@@ -114,12 +113,13 @@ export default class Catalog extends Component {
 
     checkout = () => {
         console.log('Go To Checkout');
-        this.props.shirts.forEach(shirt => {
+        shirtList.forEach(shirt => {
             shirt.quantity = 0;
         });
         this.setState({
             showConfirmation: true,
             shirtsInCart: [],
+            shirtList: shirtList
         });
         this.refs.payment.style.width = "100%";
         this.refs.cart.style.width = "0";
@@ -222,7 +222,7 @@ export default class Catalog extends Component {
         let newShirt = this.state.shirtToEdit;
         console.log('Shirt Save');
 
-        let list = this.props.shirts;
+        let list = this.state.shirtList;
         newShirt.image = newShirt.shirtStyle + '-' + newShirt.shirtColor.name.toLowerCase();
         newShirt.gender = newShirt.shirtStyle[0];
 
@@ -250,6 +250,7 @@ export default class Catalog extends Component {
 
         this.setState({
             openDesign: false,
+            shirtList: list,
             action: '',
             // Reset to a blank shirt
             shirtToEdit: blankShirt
@@ -340,29 +341,11 @@ export default class Catalog extends Component {
                 </Navbar>
                 <div>
                     <div className="overlay" ref="overlay"></div>
-                    {this.state.openDesign ? 
-                    <Design 
-                        action={this.state.action} 
-                        shirtToEdit={this.state.shirtToEdit} 
-                        saveShirtDesign={this.saveShirtDesign} 
-                        selectStyle={this.selectStyle} 
-                        selectColor={this.selectColor} 
-                        selectGraphic={this.selectGraphic} 
-                        addShirtText={this.addShirtText} 
-                        changeTextFont={this.changeTextFont} 
-                    /> 
-                    : 
-                    <div>
-                        {this.props.fetchingShirts ? <h1 style={{color: 'red'}}>FETCHING SHIRTS</h1> : ''}
-                        <CatalogTabs 
-                            shirtList={this.props.shirts} 
-                            addToCart={this.addToCart} 
-                            editShirt={this.editShirt}
-                        />
-                    </div>
-                    }
+                    {this.state.openDesign ? <Design action={this.state.action} shirtToEdit={this.state.shirtToEdit} saveShirtDesign={this.saveShirtDesign} selectStyle={this.selectStyle} selectColor={this.selectColor} selectGraphic={this.selectGraphic} addShirtText={this.addShirtText} changeTextFont={this.changeTextFont} /> : <CatalogTabs shirtList={this.state.shirtList} addToCart={this.addToCart} editShirt={this.editShirt} />}
                 </div>
             </div>
         );
     }
 }
+
+export default Catalog;
