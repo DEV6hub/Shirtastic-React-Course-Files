@@ -18,8 +18,12 @@ class Home extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            activeTab: '1'
+            activeTab: '1',
+            email: '',
+            password: ''
         };
+        this.selectedTabId = this.selectedTabId.bind(this);
+        this.signUpData = this.signUpData.bind(this);
     }
 
     toggle(tab) {
@@ -29,6 +33,16 @@ class Home extends Component {
             });
         }
     }
+    selectedTabId(tabId) {
+        this.setState({activeTab : tabId});
+    }
+    signUpData(data) {
+        this.setState({
+            email: data.email,
+            password: data.password
+        });
+    }
+    
 
     render() {
         return (<Container fluid>
@@ -60,11 +74,11 @@ class Home extends Component {
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
                             {/* Signup Component Goes Here */}
-                            <Signup />
+                            <Signup onSelectTabId={this.selectedTabId} userSignUpData={this.signUpData}/>
                         </TabPane>
                         <TabPane tabId="2">
                             {/* Shipping Component Goes Here */}
-                            <Shipping />
+                            <Shipping signUpdata={this.state}/>
                         </TabPane>
                     </TabContent>
                 </div>

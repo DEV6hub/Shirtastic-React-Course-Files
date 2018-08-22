@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import './Login.css';
-
+import { withRouter } from 'react-router-dom';
 const facebookIcon = require('../../images/facebook.svg');
 const twitterIcon = require('../../images/twitter.svg');
 
 class Login extends Component {
+    login(e) {
+        e.preventDefault()
+		this.props.history.push('/catalog');
+    }
     render() {
         return (
             <div className="login-container">
@@ -22,7 +26,7 @@ class Login extends Component {
                 <div className="hr">
                     <span>OR</span>
                 </div>
-                <form>
+                <form onSubmit={this.login.bind(this)}>
                     <div className="form-group">
                         <label htmlFor="email">Email Address</label>
                         <input type="email" className="form-control" />
@@ -40,4 +44,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
