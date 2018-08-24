@@ -1,8 +1,7 @@
 h2 {
     padding-top: 20px;
 }
-.error { color: red;
-}
+
 
 /* This class keeps the row height from getting overridden from Home.css */
 .row-item{
