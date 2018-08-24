@@ -49,6 +49,40 @@ class Shipping extends Component {
 
     render() {
         let regionsForSelectedCountry = regions[this.state.country];
+        let provStateLabel = 'Region';
+        let postalZipProps = {};
+        switch (this.state.country) { 
+            case 'canada':
+            provStateLabel = 'Province';
+            postalZipProps = {
+            label: 'Postal Code (A0A 0A0 or A0A0A0)', minLength: 6,
+            maxLength: 7,
+            regex: '([A-Za-z][0-9][A-Za-z]\\s?[0-9][A-Za-z][0-9])',
+            title: 'Please provide a Canadian postal code (space is    optional)',
+            placeholder: 'A0A 0A0 or A0A0A0'
+                };
+            break;
+        case 'usa':
+            provStateLabel = 'State'; 
+            postalZipProps = {
+                label: 'Zip Code (12345 or 12345-1234)',
+                minLength: 5,
+                maxLength: 10,
+                regex: '([0-9]{5}([-][0-9]{4})?)',
+                title: 'Please provide a 5-digit or 9-digit US zip code', 
+                placeholder: '12345 or 12345-1234'
+                };                        
+            break;
+        default:
+        postalZipProps = {
+            label: 'Postal/Zip Code', minLength: 0,
+            maxLength: 0, regex: '',
+            title: '', placeholder: ''
+            };                    
+            break;
+
+        }
+
         return (
             <div>
                 <h2>Awesome!</h2>
@@ -96,10 +130,10 @@ class Shipping extends Component {
                             </select>
                         </Col>
                         <Col className="form-group shipping-col" xs="3">
-                            <label htmlFor="province">Region</label>
+                            <label htmlFor="province">{provStateLabel}</label>
                             <br />
                             <select required name="province" value={this.state.province} required className="form-control form-control-sm"  id="region" onChange={this.handleInputChange.bind(this)}>
-                                <option value="">Select a region</option>
+                                <option value="">Select a {provStateLabel.toLowerCase()}</option>
                                 {regionsForSelectedCountry && regionsForSelectedCountry.length > 0
                                     ? regionsForSelectedCountry.map(region => (
                                         <option key={region} value={region}>
@@ -110,14 +144,19 @@ class Shipping extends Component {
                             </select>
                         </Col>
                         <Col className="form-group shipping-col" xs="3">
-                            <label htmlFor="zip">Postal Code</label>
+                            <label htmlFor="zip">{postalZipProps.label}</label>
                             <input 
-                            onChange={this.handleInputChange.bind(this)}/>
+                            onChange={this.handleInputChange.bind(this)}
                             name="zip" 
                             type="text" 
                             className="form-control form-control-sm"
                             value={this.state.zip}
-                             required
+                            required
+                            pattern={postalZipProps.regex}
+                            minLength={postalZipProps.minLength} 
+                            maxLength={postalZipProps.maxLength}
+                            placeholder={postalZipProps.placeholder} 
+                            title={postalZipProps.title}
                              />
                         </Col>
                     </Row>
