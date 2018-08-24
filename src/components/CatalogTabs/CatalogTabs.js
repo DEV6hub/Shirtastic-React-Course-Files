@@ -56,9 +56,9 @@ class CatalogTabs extends Component {
                     <TabPane tabId="1">
                         {/* All Shirt List Goes Here */}
                         <Row>
-                            {/* {this.props.shirtList.map(shirt => (
+                            {this.props.shirtList.map(shirt => (
                                 <Shirt key={shirt.id} shirt={shirt} addToCart={this.addToCart} editShirt={this.editShirt} />
-                            ))} */}
+                            ))}
                         </Row>
                     </TabPane>
                     <TabPane tabId="2">
