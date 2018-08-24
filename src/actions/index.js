@@ -30,10 +30,7 @@ export const requestShirtsFailure = (error) => ({
     type: types.REQUEST_SHIRTS_FAILURE, 
     error
 });
-export const createdUser = (response) => ({
-    type: types.CREATE_USER,
-    response
-});
+
 
 
 // This action is a thunk, doesn't return an object, returns a function that can trigger side-effects (http requests)
@@ -51,19 +48,19 @@ export const fetchShirts = () => {
 
 }
 
-export const createUser = (data) => {
-    return dispatch => {
-        return axios({
-            method: 'post',
-            url: 'http://localhost:9000/userInfo',
-            data: data
-        })
-        .then(response => {
-            console.log(response);
-            dispatch(createdUser(response.data));
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
-}
+// export const createUser = (data) => {
+//     return dispatch => {
+//         return axios({
+//             method: 'post',
+//             url: 'http://localhost:9000/userInfo',
+//             data: data
+//         })
+//         .then(response => {
+//             console.log(response);
+//             dispatch(createdUser(response.data));
+//         })
+//         .catch(error => {
+//             console.log(error);
+//         });
+//     }
+// }
