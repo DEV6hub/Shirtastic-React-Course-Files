@@ -83,7 +83,7 @@ class Home extends Component {
                         </TabPane>
                         <TabPane tabId="2">
                             {/* Shipping Component Goes Here */}
-                            <Shipping/>
+                            <Shipping signUpdata={this.state}/>
                         </TabPane>
                     </TabContent>
                 </div>

@@ -30,7 +30,10 @@ class Shipping extends Component {
     
 
     componentWillReceiveProps(nextProps) {
-        
+        this.setState({
+            email: nextProps.signUpdata.email,
+            password: nextProps.signUpdata.password
+        });
     }
     shippingInfoSubmit = (event) => {
         event.preventDefault()
@@ -41,7 +44,7 @@ class Shipping extends Component {
         }  
     }
     handleInputChange = event => {
-       
+    
     }
 
     render() {
