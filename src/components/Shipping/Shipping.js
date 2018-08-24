@@ -10,7 +10,7 @@ import { FormWithConstraints, FieldFeedbacks, FieldFeedback, } from 'react-form-
 
 const contactIntro = 'Welcome to the club, where can we ship your shirts to? You can always provide this information at checkout';
 
-class Shipping extends Component {
+export default class Shipping extends Component {
     constructor() {
         super();
         this.state = {
@@ -39,7 +39,7 @@ class Shipping extends Component {
         event.preventDefault()
         this.signupForm.validateFields(event.currentTarget.name);
         if(this.signupForm.isValid()) {
-            this.props.createUser(this.state);
+           // this.props.createUser(this.state);
             this.props.history.push('/catalog');
         }  
     }//this.signupForm.validateFields(event.currentTarget.name);
@@ -189,11 +189,7 @@ class Shipping extends Component {
         );
     }
 }
-function mapStateToProps(state) {
-    return {
-        user: state.user.user
-    }
-}
 
 
-export default connect(mapStateToProps, {createUser})(withRouter(Shipping));
+
+//export default connect(mapStateToProps, {createUser})(withRouter(Shipping));

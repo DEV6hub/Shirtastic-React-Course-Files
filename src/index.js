@@ -4,18 +4,15 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
+import { createStore} from 'redux';
+import { Provider } from 'react-redux';
 
-
-
-
-
-
-
+const store = createStore();
 
 render(
-    <div>
+    <Provider store={store}>
         <App />
-    </div>,
+    </Provider>,
     document.getElementById('root')
 )
 registerServiceWorker();
