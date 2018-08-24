@@ -44,8 +44,8 @@ class Shirt extends Component {
                 {this.props.shirt.text ?
                     <div ref="text" className="shirt-text-final" style={{ color: this.props.shirt.textColor.color, fontFamily: this.props.shirt.font }}>{this.props.shirt.text}</div> : null}
                 <img className="img-fluid" src={require(`../../images/${this.props.shirt.image}.jpg`)} alt="Shirt" />
-                <h4 className="card-title">{this.props.shirt.name}</h4>
-                <p className="description">{this.props.shirt.description}</p>
+                <h4 className="card-title"></h4>
+                <p className="description"></p>
                 <Container>
                     <Row className="btn-row">
                         <Col className="icon-basket" xs="2" onClick={() => { this.addToCart(); }}></Col>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import './Shipping.css';
 import { createUser } from '../../actions';
@@ -178,9 +178,9 @@ class Shipping extends Component {
                         </Col>
                     </Row>
                     <div>
-                        <Link to="/catalog">
+                       
                             <button type="button" className="primary-btn float-left">DO THIS LATER</button>
-                        </Link>
+                        
 
                         <button type="submit" className="primary-btn float-right">SAVE</button>
                     </div>
