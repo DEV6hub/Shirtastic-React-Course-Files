@@ -44,7 +44,13 @@ class Shipping extends Component {
         }  
     }
     handleInputChange = event => {
-    
+        this.signupForm.validateFields(event.currentTarget.name);
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        this.setState({
+        [name]: value
+        });
     }
 
     render() {
@@ -86,7 +92,7 @@ class Shipping extends Component {
                 <h2>Awesome!</h2>
                 <p>{contactIntro}</p>
                 <FormWithConstraints  
-                    
+                    onSubmit={this.shippingInfoSubmit.bind(this)}
                     noValidate
                     ref={element => (this.signupForm = element)}
                 >
