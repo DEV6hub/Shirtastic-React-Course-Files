@@ -27,12 +27,7 @@ class Shipping extends Component {
         };
     }
 
-    // componentWillMount() {
-    //     this.setState({
-    //         email: this.props.signUpdata.email,
-    //         password: this.props.signUpdata.password
-    //     });
-    // }
+    
 
     componentWillReceiveProps(nextProps) {
         this.setState({
