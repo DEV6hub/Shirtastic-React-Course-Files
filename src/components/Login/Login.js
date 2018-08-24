@@ -7,7 +7,8 @@ const twitterIcon = require('../../images/twitter.svg');
 class Login extends Component {
     login(e) {
         e.preventDefault()
-		this.props.history.push('/catalog');
+        this.props.history.push('/catalog');
+        let data = this.props.userSignUpData;
     }
     render() {
         return (

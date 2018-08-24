@@ -12,3 +12,18 @@ p {
     font-size: 14px;
     color: #FFFFFF;
 }
+/* .error { color: red;
+} */
+[data-feedback].error {
+    color: red;
+  }
+  [data-feedback].warning {
+    color: orange;
+  }
+  [data-feedback].info {
+    color: blue;
+  }
+  [data-feedback].when-valid {
+    color: green;
+  }
+  

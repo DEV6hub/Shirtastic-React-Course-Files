@@ -35,9 +35,6 @@ export const createdUser = (response) => ({
     response
 });
 
-export const getUser = () => ({
-    type: types.GET_USER
-});
 
 // This action is a thunk, doesn't return an object, returns a function that can trigger side-effects (http requests)
 // when our async fetch returns, we dispatch the appropriate actions

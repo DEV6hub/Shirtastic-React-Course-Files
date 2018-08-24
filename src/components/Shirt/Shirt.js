@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Shirt.css';
 import { Container, Row, Col, Card } from 'reactstrap';
-
+import { Link } from 'react-router-dom';
 class Shirt extends Component {
 
     addToCart = () => {
@@ -30,9 +30,17 @@ class Shirt extends Component {
 
     render() {
         return (
+           
             <Card className="text-center">
                 {this.props.shirt.graphic ?
-                    <img ref="graphicImage" className="img-fluid shirt-graphic-img" src={this.props.shirt.graphic ? require(`../../images/${this.props.shirt.graphic}`) : ''} alt="shirt graphic" /> : null}
+                //{`/users/${user.id}`}
+                   <Link to= {`/graphic/${this.props.shirt.graphic}`}>
+                    <img ref="graphicImage"
+                         className="img-fluid shirt-graphic-img" 
+                         src={this.props.shirt.graphic ? require(`../../images/${this.props.shirt.graphic}`) : ''} 
+                         alt="shirt graphic" /> 
+                         </Link>
+                : null}
                 {this.props.shirt.text ?
                     <div ref="text" className="shirt-text-final" style={{ color: this.props.shirt.textColor.color, fontFamily: this.props.shirt.font }}>{this.props.shirt.text}</div> : null}
                 <img className="img-fluid" src={require(`../../images/${this.props.shirt.image}.jpg`)} alt="Shirt" />
@@ -48,6 +56,8 @@ class Shirt extends Component {
                     </Row>
                 </Container>
             </Card>
+            
+          
         )
     }
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Home.css';
 
 import { Container, Row, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
@@ -43,16 +43,17 @@ class Home extends Component {
         });
     }
     
-
     render() {
-        return (<Container fluid>
+        return (
+          <Container fluid>
+         {/* <Fragment> */}
             <div className="img-container">
                 <img src={background} alt="background" />
             </div>
             <Row className="row-full-height">
                 {this.state.activeTab === '1' ? <div className="side-column" >
                     {/* Login Component Goes Here */}
-                    <Login />
+                    <Login userSignUpData={this.state}/>
                 </div> : null}
 
                 <div className="center-column">
@@ -74,6 +75,10 @@ class Home extends Component {
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
                             {/* Signup Component Goes Here */}
+                            {/* {React.createElement(Signup, {
+                                onSelectTabId: this.selectedTabId,
+                                userSignUpData: this.signUpData
+                            })} */}
                             <Signup onSelectTabId={this.selectedTabId} userSignUpData={this.signUpData}/>
                         </TabPane>
                         <TabPane tabId="2">
@@ -83,7 +88,9 @@ class Home extends Component {
                     </TabContent>
                 </div>
             </Row>
-        </Container >);
+           {/* </Fragment> */}
+        </Container >
+    );
     }
 }
 export default Home;

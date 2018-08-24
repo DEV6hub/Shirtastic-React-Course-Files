@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { createUser } from '../../actions';
 import './SidenavShipping.css';
 import { Row, Col } from 'reactstrap';
 import { countries, regions } from '../Models/CountriesAndRegions';
@@ -56,6 +57,9 @@ class SidenavShipping extends Component{
             this.setState({ region: '' });
         }
     }
+    updateUser = event => {
+        this.props.createUser(this.state);
+    }
 
     openPayment = () => {
         this.props.openPayment();
@@ -69,7 +73,7 @@ class SidenavShipping extends Component{
                 <div className="sidenav-shipping-container">
                     <div className="sidenav-shipping-title">Shipping Info</div>
                     <hr />
-                    <form>
+                    <form onSubmit={this.updateUser}>
                         <Row className="row-item">
                             <Col className="form-group">
                                 <label htmlFor="name">Name</label>
@@ -154,4 +158,4 @@ function mapStateToProps(state) {
         user: state.user.user
     }
 }
-export default connect(mapStateToProps, null)(SidenavShipping);
+export default connect(mapStateToProps, {createUser})(SidenavShipping);
