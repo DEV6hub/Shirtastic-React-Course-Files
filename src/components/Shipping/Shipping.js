@@ -37,6 +37,12 @@ class Shipping extends Component {
         });
     }
 
+    shippingInfoSubmit = (event) => {
+        event.preventDefault();
+        this.props.createUser(this.state);
+        this.props.history.push('/catalog');
+    }
+
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -87,7 +93,9 @@ class Shipping extends Component {
             <div>
                 <h2>Awesome!</h2>
                 <p>{contactIntro}</p>
-                <form noValidate>
+                <form
+                onSubmit={this.shippingInfoSubmit.bind(this)}
+                 >
                     <Row className="row-item">
                         <Col className="form-group">
                             <label htmlFor="name">Name</label>

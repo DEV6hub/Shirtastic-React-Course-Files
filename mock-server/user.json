@@ -1,14 +1,14 @@
 {
   "userInfo": {
-    "name": "Gagan",
-    "address1": "38 kittiwake avenue",
-    "address2": "ddd",
-    "phone": "4162724949",
-    "city": "etobicoke",
-    "country": "canada",
-    "province": "British Columbia",
-    "zip": "m9v4p6",
-    "email": "gagan@gmail.com",
-    "password": "abcdef1Q@"
+    "name": "",
+    "address1": "",
+    "address2": "",
+    "phone": "",
+    "city": "",
+    "country": "",
+    "province": "",
+    "zip": "",
+    "email": "",
+    "password": ""
   }
 }
