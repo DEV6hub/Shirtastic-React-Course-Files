@@ -30,10 +30,7 @@ class Shipping extends Component {
     
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            email: nextProps.signUpdata.email,
-            password: nextProps.signUpdata.password
-        });
+        
     }
     shippingInfoSubmit = (event) => {
         event.preventDefault()
@@ -42,15 +39,9 @@ class Shipping extends Component {
             this.props.createUser(this.state);
             this.props.history.push('/catalog');
         }  
-    }//this.signupForm.validateFields(event.currentTarget.name);
+    }
     handleInputChange = event => {
-        this.signupForm.validateFields(event.currentTarget.name);
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        this.setState({
-        [name]: value
-        });
+       
     }
 
     render() {
@@ -92,7 +83,7 @@ class Shipping extends Component {
                 <h2>Awesome!</h2>
                 <p>{contactIntro}</p>
                 <FormWithConstraints  
-                    onSubmit={this.shippingInfoSubmit.bind(this)} 
+                    
                     noValidate
                     ref={element => (this.signupForm = element)}
                 >
