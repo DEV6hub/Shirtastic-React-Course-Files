@@ -75,11 +75,11 @@ class Home extends Component {
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
                             {/* Signup Component Goes Here */}
-                            {/* {React.createElement(Signup, {
+                         {React.createElement(Signup, {
                                 onSelectTabId: this.selectedTabId,
                                 userSignUpData: this.signUpData
-                            })} */}
-                            <Signup onSelectTabId={this.selectedTabId} userSignUpData={this.signUpData}/>
+                            })} 
+                            {/* <Signup onSelectTabId={this.selectedTabId} userSignUpData={this.signUpData}/> */}
                         </TabPane>
                         <TabPane tabId="2">
                             {/* Shipping Component Goes Here */}
