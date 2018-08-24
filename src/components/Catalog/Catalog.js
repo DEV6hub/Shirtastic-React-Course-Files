@@ -355,7 +355,9 @@ export default class Catalog extends Component {
                     <div>
                         {this.props.fetchingShirts ? <h1 style={{color: 'red'}}>FETCHING SHIRTS</h1> : ''}
                         <CatalogTabs 
-                
+                            shirtList={this.props.shirts} 
+                            addToCart={this.addToCart} 
+                            editShirt={this.editShirt}
                         />
                     </div>
                     }
