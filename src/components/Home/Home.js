@@ -45,8 +45,8 @@ class Home extends Component {
     
     render() {
         return (
-          <Container fluid>
-         {/* <Fragment> */}
+        //   <Container fluid>
+          <Fragment>
             <div className="img-container">
                 <img src={background} alt="background" />
             </div>
@@ -88,8 +88,8 @@ class Home extends Component {
                     </TabContent>
                 </div>
             </Row>
-           {/* </Fragment> */}
-        </Container >
+           </Fragment> 
+        // </Container >
     );
     }
 }
