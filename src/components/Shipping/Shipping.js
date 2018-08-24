@@ -6,7 +6,7 @@ import { createUser } from '../../actions';
 import {connect} from 'react-redux';
 import { Row, Col } from 'reactstrap';
 import { countries, regions } from '../Models/CountriesAndRegions';
-
+import { FormWithConstraints, FieldFeedbacks, FieldFeedback, } from 'react-form-with-constraints';
 
 const contactIntro = 'Welcome to the club, where can we ship your shirts to? You can always provide this information at checkout';
 
@@ -39,8 +39,11 @@ class Shipping extends Component {
 
     shippingInfoSubmit = (event) => {
         event.preventDefault();
-        this.props.createUser(this.state);
-        this.props.history.push('/catalog');
+        this.shippingForm.validateFields(event.currentTarget.name);
+        if(this.signupForm.isValid()) {
+            this.props.createUser(this.state);
+            this.props.history.push('/catalog');
+        }
     }
 
 
@@ -93,14 +96,27 @@ class Shipping extends Component {
             <div>
                 <h2>Awesome!</h2>
                 <p>{contactIntro}</p>
-                <form
+                <FormWithConstraints
                 onSubmit={this.shippingInfoSubmit.bind(this)}
+                ref={element => (this.shippingForm = element)}
+                noValidate
                  >
                     <Row className="row-item">
                         <Col className="form-group">
                             <label htmlFor="name">Name</label>
                             <input type="text" name="name" value={this.state.name} minLength={5} required className="form-control form-control-sm" onChange={this.handleInputChange.bind(this)}/>
-                            
+                            <FieldFeedbacks for="name">
+                                <FieldFeedback when="valueMissing"> 
+                                    You must provide name.
+                                </FieldFeedback>
+                                <FieldFeedback when="tooShort">
+                                    Name should be at least 5 characters long.
+                                </FieldFeedback>
+                                <FieldFeedback when={value => /\d/.test(value)}>
+                                    Shouldnot contain numbers
+                                </FieldFeedback>
+                            </FieldFeedbacks>
+
 
                         </Col>
                     </Row>
@@ -175,7 +191,7 @@ class Shipping extends Component {
 
                         <button type="submit" className="primary-btn float-right">SAVE</button>
                     </div>
-                </form >
+                </FormWithConstraints >
             </div>
         );
     }
