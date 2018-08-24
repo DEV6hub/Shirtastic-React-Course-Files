@@ -44,9 +44,10 @@ const twitterIcon = require('../../images/twitter.svg');
 //         );
 //     }
 // }
-const Login = () => {
+const Login = (props) => {
     const login = (e) => {
         e.preventDefault();
+        let data = props.userSignUpData;
     }
     return (
         <div className="login-container">

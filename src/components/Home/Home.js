@@ -53,7 +53,7 @@ class Home extends Component {
             <Row className="row-full-height">
                 {this.state.activeTab === '1' ? <div className="side-column" >
                     {/* Login Component Goes Here */}
-                    <Login/>
+                    <Login userSignUpData={this.state}/>
                 </div> : null}
 
                 <div className="center-column">
