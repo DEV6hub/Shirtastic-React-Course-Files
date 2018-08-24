@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-//import { Column, Row } from 'simple-flexbox';
+
 
 export default class GraphicDisplay extends Component{
     
     render() {
         return (
             <div>
-                <h3 style={styles.graphicHeader}>Graphic Logo</h3>
-                <img style={styles.graphicContainer} ref="graphicImage"
-                         className="img-fluid shirt-graphic-img" 
+                <h3 >Graphic Logo</h3>
+                <img  ref="graphicImage"
+                         className="img-fluid" 
                          src={require(`../../images/${this.props.match.params.graphicLogo}`)}
                          alt="shirt graphic" /> 
            </div>
@@ -37,20 +37,4 @@ export default class GraphicDisplay extends Component{
     }
 }
 
-const styles = {
-    greyFont: {
-        color: 'grey'
-    },
-    imgWidth: {
-        width: 180,
-    },
-    graphicHeader: {
-      border: '1px solid black',
-      color: 'grey',
-      textAlign: 'center'
-    } ,
-    graphicContainer: {
-        border: '1px solid black',
-        backgroundColor: 'grey'
-    }
-};
+
