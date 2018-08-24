@@ -5,7 +5,7 @@ import './Shipping.css';
 import { createUser } from '../../actions';
 import {connect} from 'react-redux';
 import { Row, Col } from 'reactstrap';
-
+import { countries, regions } from '../Models/CountriesAndRegions';
 
 
 const contactIntro = 'Welcome to the club, where can we ship your shirts to? You can always provide this information at checkout';
@@ -48,6 +48,7 @@ class Shipping extends Component {
    
 
     render() {
+        let regionsForSelectedCountry = regions[this.state.country];
         return (
             <div>
                 <h2>Awesome!</h2>
@@ -87,25 +88,25 @@ class Shipping extends Component {
                             <br />
                             <select name="country" required value={this.state.country} className="form-control form-control-sm"   id="country" onChange={this.handleInputChange.bind(this)}>
                                 <option value="">Select</option>
-                                {/* {countries.map(country => (
+                                {countries.map(country => (
                                     <option key={country.id} value={country.id}>
                                         {country.name}
                                     </option>
-                                ))} */}
+                                ))}
                             </select>
                         </Col>
                         <Col className="form-group shipping-col" xs="3">
                             <label htmlFor="province">Region</label>
                             <br />
-                            <select name="province" value={this.state.province} required className="form-control form-control-sm"  id="region" onChange={this.handleInputChange.bind(this)}>
+                            <select required name="province" value={this.state.province} required className="form-control form-control-sm"  id="region" onChange={this.handleInputChange.bind(this)}>
                                 <option value="">Select a region</option>
-                                {/* {regionsForSelectedCountry && regionsForSelectedCountry.length > 0
+                                {regionsForSelectedCountry && regionsForSelectedCountry.length > 0
                                     ? regionsForSelectedCountry.map(region => (
                                         <option key={region} value={region}>
                                             {region}
                                         </option>
                                     ))
-                                    : null} */}
+                                    : null}
                             </select>
                         </Col>
                         <Col className="form-group shipping-col" xs="3">
