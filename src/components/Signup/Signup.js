@@ -41,7 +41,13 @@ class Signup extends Component {
                 <FormWithConstraints  onSubmit={this.signupSubmit.bind(this)} ref={element => (this.signupForm = element)}>
                     <div className="form-group">
                         <label htmlFor="email">Email Address</label>
-                        <input type="email" required name="email" className="form-control" onChange={this.handleInputChange.bind(this)}/>
+                        {React.createElement(
+                                'input', 
+                                { className: 'form-control', type: 'text' },
+                                null
+                        )} 
+
+                        {/* <input type="email" required name="email" className="form-control" onChange={this.handleInputChange.bind(this)}/> */}
                         <FieldFeedbacks for="email">
                                 <FieldFeedback when="valueMissing"> 
                                     You must provide email address.
@@ -51,12 +57,17 @@ class Signup extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="pwd">Password</label>
-                       <input type="password"
+                        {React.createElement(
+                                'input', 
+                                { className: 'form-control', type: 'password' },
+                                null
+                        )} 
+                       {/* <input type="password"
                         name="password" className="form-control"
                          onChange={this.handleInputChange.bind(this)}
                          ref={password => this.password = password}
                          required pattern=".{5,}"
-                         />
+                         /> */}
                          <FieldFeedbacks for="password">
                             <FieldFeedback when="valueMissing" />
                             <FieldFeedback when="patternMismatch">Should be at least 5 characters long</FieldFeedback>
@@ -69,10 +80,15 @@ class Signup extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="pwd2">Confirm Password</label>
-                        <input type="password" name="passwordConfirm" className="form-control"
+                        {React.createElement(
+                                'input', 
+                                { className: 'form-control', type: 'password' },
+                                null
+                        )} 
+                        {/* <input type="password" name="passwordConfirm" className="form-control"
                          value={this.state.passwordConfirm}
                          required
-                          onChange={this.handleInputChange.bind(this)}/>
+                          onChange={this.handleInputChange.bind(this)}/> */}
                            <FieldFeedbacks for="passwordConfirm">
                                 <FieldFeedback when={value => value !== this.password.value}>Not the same password</FieldFeedback>
                             </FieldFeedbacks>
