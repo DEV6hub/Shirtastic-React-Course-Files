@@ -23,6 +23,7 @@ class App extends Component {
             render={() => (<Catalog />)}
           >
           </Route>
+          <Route path="/graphic/:graphicLogo" component={GraphicDisplay}/>
         </div>
       </Router>
     );

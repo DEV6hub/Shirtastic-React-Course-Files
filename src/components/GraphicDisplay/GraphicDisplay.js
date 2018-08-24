@@ -5,9 +5,16 @@ export default class GraphicDisplay extends Component{
     
     render() {
         return (
-           <div></div>
+            <div>
+                <h3>ID: {this.props.match.params.graphicLogo}</h3>
+                <img ref="graphicImage"
+                         className="img-fluid shirt-graphic-img" 
+                         src={require(`../../images/${this.props.match.params.graphicLogo}`)}
+                         alt="shirt graphic" /> 
+            </div>
         );
     }
+
 }
 
 const styles = {
