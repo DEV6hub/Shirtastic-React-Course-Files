@@ -14,7 +14,18 @@ class Shipping extends Component {
     constructor() {
         super();
         this.state = {
+            name: 'John',
+            address1: 'Smith',
+            address2: '',
+            phone: '4152734747',
+            city: 'Mississauga',
+            country: 'canada',
+            province: 'Ontario',
+            zip: 'M94U6',
+            email: '',
+            password: ''
         };
+
     }
 
     
@@ -37,7 +48,7 @@ class Shipping extends Component {
                     <Row className="row-item">
                         <Col className="form-group">
                             <label htmlFor="name">Name</label>
-                            <input type="text" name="name"  minLength={5} required className="form-control form-control-sm" />
+                            <input type="text" name="name" value={this.state.name} minLength={5} required className="form-control form-control-sm" />
                             
 
                         </Col>
@@ -45,28 +56,28 @@ class Shipping extends Component {
                     <Row className="row-item">
                         <Col className="form-group">
                             <label htmlFor="address1">Address 1</label>
-                            <input type="text" required name="address1"  className="form-control form-control-sm"  />
+                            <input type="text" required name="address1" value={this.state.address1} className="form-control form-control-sm"  />
                         </Col>
                         <Col className="form-group">
                             <label htmlFor="address2">Address 2</label>
-                            <input type="text" name="address2" className="form-control form-control-sm" />
+                            <input type="text" name="address2" value={this.state.address2} className="form-control form-control-sm" />
                         </Col>
                     </Row>
                     <Row className="row-item">
                         <Col className="form-group">
                             <label htmlFor="phone">Phone Number</label>
-                            <input type="text" required name="phone"   className="form-control form-control-sm" />
+                            <input type="text" required name="phone" value={this.state.phone}  className="form-control form-control-sm" />
                         </Col>
                         <Col className="form-group">
                             <label htmlFor="city">City</label>
-                            <input type="text" required name="city" className="form-control form-control-sm" />
+                            <input type="text" required name="city" value={this.state.city} className="form-control form-control-sm" />
                         </Col>
                     </Row>
                     <Row className="row-item">
                         <Col className="form-group shipping-col" xs="6">
                             <label htmlFor="country">Country</label>
                             <br />
-                            <select name="country" required className="form-control form-control-sm"   id="country">
+                            <select name="country" required value={this.state.country} className="form-control form-control-sm"   id="country">
                                 <option value="">Select</option>
                                 {/* {countries.map(country => (
                                     <option key={country.id} value={country.id}>
@@ -78,7 +89,7 @@ class Shipping extends Component {
                         <Col className="form-group shipping-col" xs="3">
                             <label htmlFor="province">Region</label>
                             <br />
-                            <select name="province" required className="form-control form-control-sm"  id="region">
+                            <select name="province" value={this.state.province} required className="form-control form-control-sm"  id="region">
                                 <option value="">Select a region</option>
                                 {/* {regionsForSelectedCountry && regionsForSelectedCountry.length > 0
                                     ? regionsForSelectedCountry.map(region => (
@@ -96,7 +107,7 @@ class Shipping extends Component {
                             name="zip" 
                             type="text" 
                             className="form-control form-control-sm"
-                            
+                            value={this.state.zip}
                              required
                              />
                         </Col>
