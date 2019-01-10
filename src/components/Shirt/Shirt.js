@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 import './Shirt.css';
 import { Container, Row, Col, Card } from 'reactstrap';
 import { Link } from 'react-router-dom';
-class Shirt extends Component {
+function Shirt(props) {
 
-    addToCart = () => {
-        this.props.addToCart(this.props.shirt);
+    const addToCart = () => {
+        props.addToCart(props.shirt);
     }
 
-    editShirt = () => {
-        this.props.editShirt(this.props.shirt);
+    const editShirt = () => {
+        props.editShirt(props.shirt);
     }
 
-    reCalculate = (pixels, parameter) => {
+    const reCalculate = (pixels, parameter) => {
         let newPixels;
         pixels = pixels.substring(0, pixels.length - 2);
         switch (parameter) {
@@ -28,38 +28,37 @@ class Shirt extends Component {
         return newPixels;
     }
 
-    render() {
+    const graphicImageRef = useRef();
+    const textRef = useRef();
+
         return (
            
             <Card className="text-center">
-                {this.props.shirt.graphic ?
+                {props.shirt.graphic ?
                 //{`/users/${user.id}`}
-                   <Link to= {`/graphic/${this.props.shirt.graphic}`}>
-                    <img ref="graphicImage"
+                   <Link to= {`/graphic/${props.shirt.graphic}`}>
+                    <img ref={graphicImageRef}
                          className="img-fluid shirt-graphic-img" 
-                         src={this.props.shirt.graphic ? require(`../../images/${this.props.shirt.graphic}`) : ''} 
+                         src={props.shirt.graphic ? require(`../../images/${props.shirt.graphic}`) : ''} 
                          alt="shirt graphic" /> 
                          </Link>
                 : null}
-                {this.props.shirt.text ?
-                    <div ref="text" className="shirt-text-final" style={{ color: this.props.shirt.textColor.color, fontFamily: this.props.shirt.font }}>{this.props.shirt.text}</div> : null}
-                <img className="img-fluid" src={require(`../../images/${this.props.shirt.image}.jpg`)} alt="Shirt" />
-                <h4 className="card-title">{this.props.shirt.name}</h4>
-                <p className="description">{this.props.shirt.description}</p>
+                {props.shirt.text ?
+                    <div ref={textRef} className="shirt-text-final" style={{ color: props.shirt.textColor.color, fontFamily: props.shirt.font }}>{props.shirt.text}</div> : null}
+                <img className="img-fluid" src={require(`../../images/${props.shirt.image}.jpg`)} alt="Shirt" />
+                <h4 className="card-title">{props.shirt.name}</h4>
+                <p className="description">{props.shirt.description}</p>
                 <Container>
                     <Row className="btn-row">
-                        <Col className="icon-basket" xs="2" onClick={() => { this.addToCart(); }}></Col>
+                        <Col className="icon-basket" xs="2" onClick={() => { addToCart(); }}></Col>
                         <Col className="text" xs="8">
-                            <strong>${this.props.shirt.price}</strong>
+                            <strong>${props.shirt.price}</strong>
                         </Col>
-                        <Col className="icon-edit" xs="2" onClick={() => { this.editShirt(); }}></Col>
+                        <Col className="icon-edit" xs="2" onClick={() => { editShirt(); }}></Col>
                     </Row>
                 </Container>
-            </Card>
-            
-          
+            </Card>  
         )
-    }
 
 }
 

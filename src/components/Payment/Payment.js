@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Payment.css';
 import { Row, Col } from 'reactstrap';
 
-class Payment extends Component {
+function Payment(props) {
 
-    checkout = () => {
-        this.props.checkout();
+    const checkout = () => {
+        props.checkout();
     }
-    render() {
-        return (<div className="payment-container">
+        return (
+        <div className="payment-container">
             <div className="payment-title">Payment Method</div>
             <hr />
             <form>
@@ -50,12 +50,10 @@ class Payment extends Component {
                 <Col className="total-price">$61.94</Col>
             </Row>
             <div>
-                <button type="button" className="primary-btn float-right" onClick={() => { this.checkout(); }}>CHECKOUT</button>
+                <button type="button" className="primary-btn float-right" onClick={() => { checkout(); }}>CHECKOUT</button>
             </div>
         </div>
         )
-    }
-
 }
 
 export default Payment;

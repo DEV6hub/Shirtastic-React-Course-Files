@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Login.css';
 import { withRouter } from 'react-router-dom';
 const facebookIcon = require('../../images/facebook.svg');
 const twitterIcon = require('../../images/twitter.svg');
 
-class Login extends Component {
-    login(e) {
-        e.preventDefault()
-        this.props.history.push('/catalog');
-        let data = this.props.userSignUpData;
+function Login(props){
+    const login = (event) => {
+        event.preventDefault()
+        props.history.push('/catalog');
+        let data = props.userSignUpData;
     }
-    render() {
         return (
             <div className="login-container">
                 <div className="text-center">
@@ -27,7 +26,7 @@ class Login extends Component {
                 <div className="hr">
                     <span>OR</span>
                 </div>
-                <form onSubmit={this.login.bind(this)}>
+                <form onSubmit={login}>
                     <div className="form-group">
                         <label htmlFor="email">Email Address</label>
                         <input type="email" className="form-control" />
@@ -42,7 +41,6 @@ class Login extends Component {
                 </form>
             </div>
         );
-    }
 }
 
 export default withRouter(Login);

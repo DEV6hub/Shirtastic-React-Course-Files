@@ -6,8 +6,7 @@ import Home from '../containers/Home';
 import Catalog from '../containers/Catalog';
 import GraphicDisplay from '../components/GraphicDisplay/GraphicDisplay';
 
-class App extends Component {
-  render() {
+function App(){
     return (
       <Router>
         <div className="App">
@@ -27,7 +26,6 @@ class App extends Component {
         </div>
       </Router>
     );
-  }
 }
 
 export default App;

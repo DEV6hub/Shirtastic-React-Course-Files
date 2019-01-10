@@ -1,47 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useRef } from 'react';
 import './Signup.css';
 import { withRouter } from 'react-router-dom';
 import { FormWithConstraints, FieldFeedbacks, FieldFeedback, } from 'react-form-with-constraints';
 
 const termsOfUse = 'By clicking the Sign Up button below, you agree to our Terms of Service and Privacy Policy.';
 
-class Signup extends Component {
-    constructor() {
-        super();
-        this.state = {
-            email: '',
-            password: '',
-            passwordConfirm: ''
-        };
-    }
-    handleInputChange = event => {
-        this.signupForm.validateFields(event.currentTarget.name);
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+function Signup(props) {
+    const [state, setState] = useState({email: '', password: '', passwordConfirm: ''});
+    const signupFormRef = useRef();
+    const passwordRef = useRef();
 
-        this.setState({
-        [name]: value
+    const handleInputChange = event => {
+        signupFormRef.current.validateFields(event.currentTarget.name);
+        setState({
+            ...state,
+            [event.target.name]: event.target.value
         });
     }
-    signupSubmit = e => {
-        e.preventDefault()
-        if(this.signupForm.isValid()) {
-            this.props.onSelectTabId('2');
-            this.props.userSignUpData(this.state);
+
+    const signupSubmit = event => {
+        event.preventDefault()
+        if(signupFormRef.current.isValid()) {
+            props.onSelectTabId('2');
+            props.userSignUpData(state);
         }
     }
     // selectedTabId = tabId => {
     //     this.props.onSelectTabId('2');
     //     this.props.userSignUpData(this.state);
     // }
-    render() {
         return (
             <div className="signup-container">
-                <FormWithConstraints  onSubmit={this.signupSubmit.bind(this)} ref={element => (this.signupForm = element)}>
+                <FormWithConstraints  onSubmit={signupSubmit} ref={signupFormRef}>
                     <div className="form-group">
                         <label htmlFor="email">Email Address</label>
-                        <input type="email" required name="email" className="form-control" onChange={this.handleInputChange.bind(this)}/>
+                        <input type="email" required name="email" className="form-control" onChange={handleInputChange}/>
                         <FieldFeedbacks for="email">
                                 <FieldFeedback when="valueMissing"> 
                                     You must provide email address.
@@ -53,8 +46,8 @@ class Signup extends Component {
                         <label htmlFor="pwd">Password</label>
                        <input type="password"
                         name="password" className="form-control"
-                         onChange={this.handleInputChange.bind(this)}
-                         ref={password => this.password = password}
+                         onChange={handleInputChange}
+                         ref={passwordRef}
                          required pattern=".{5,}"
                          />
                          <FieldFeedbacks for="password">
@@ -70,11 +63,11 @@ class Signup extends Component {
                     <div className="form-group">
                         <label htmlFor="pwd2">Confirm Password</label>
                         <input type="password" name="passwordConfirm" className="form-control"
-                         value={this.state.passwordConfirm}
+                         value={state.passwordConfirm}
                          required
-                          onChange={this.handleInputChange.bind(this)}/>
+                          onChange={handleInputChange}/>
                            <FieldFeedbacks for="passwordConfirm">
-                                <FieldFeedback when={value => value !== this.password.value}>Not the same password</FieldFeedback>
+                                <FieldFeedback when={value => value !== passwordRef.current.value}>Not the same password</FieldFeedback>
                             </FieldFeedbacks>
                     </div>
                     <p>{termsOfUse}</p>
@@ -84,7 +77,6 @@ class Signup extends Component {
                 </FormWithConstraints>
             </div>
         );
-    }
 }
 
 export default withRouter(Signup);

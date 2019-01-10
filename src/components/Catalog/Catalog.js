@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Catalog.css';
 
 import { Row, Navbar, NavbarToggler } from 'reactstrap';
@@ -12,139 +12,118 @@ import CatalogTabs from '../CatalogTabs/CatalogTabs';
 
 const navLogo = require('../../images/navlogo.png');
 
-export default class Catalog extends Component {
+export default function Catalog(props) {
+    // the below useState(s) replace the initial state
+    const [activeTab, setActiveTab] = useState('1');
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [shirtsInCart, setShirtsInCart] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [openDesign, setOpenDesign] = useState(false);
+    const [shirtToEdit, setShirtToEdit] = useState(
+        {
+            name: 'untitled_design',
+            price: 18.99,
+            quantity: 0,
+            subtotal: 0,
+            shirtStyle: 'MensShirt',
+            shirtColor: { name: 'white', color: '#FFFFFF' },
+            text: '',
+            textColor: { name: 'white', color: '#FFFFFF' },
+            font: "'Montserrat', sans-serif",
+            graphic: '',
+            graphicColor: { name: 'white', color: '#FFFFFF' }
+        }
+    );
+    const [action, setAction] = useState('');
 
-    constructor(props) {
-        super(props);
+    useEffect(() => { //This replaces the lifecycle hooks
+        props.actions.fetchShirts();
+      }, {}); //we pass an empty object/empty array as a 2nd arg to only run once
+      //else if we pass a variable, component will re-render again if the value changes
 
-        this.openCart = this.openCart.bind(this);
-        this.closeCart = this.closeCart.bind(this);
-        this.openShipping = this.openShipping.bind(this);
-        this.openPayment = this.openPayment.bind(this);
-        this.checkout = this.checkout.bind(this);
-        this.goToCatalog = this.goToCatalog.bind(this);
-        this.addToCart = this.addToCart.bind(this);
-        this.editShirt = this.editShirt.bind(this);
-        this.removeFromCart = this.removeFromCart.bind(this);
-        this.handleOutsideClick = this.handleOutsideClick.bind(this);
-        this.newShirtDesign = this.newShirtDesign.bind(this);
-        this.setShirtTitle = this.setShirtTitle.bind(this);
-        this.saveShirtDesign = this.saveShirtDesign.bind(this);
-        this.selectStyle = this.selectStyle.bind(this);
-        this.selectColor = this.selectColor.bind(this);
-        this.selectGraphic = this.selectGraphic.bind(this);
-        this.addShirtText = this.addShirtText.bind(this);
-        this.changeTextFont = this.changeTextFont.bind(this);
+    const cartRef = useRef();
+    const overlayRef = useRef();
+    const shippingRef = useRef();
+    const shippingOverlayRef = useRef();
+    const cartOverlayRef = useRef();
+    const paymentRef = useRef();
 
-        this.state = {
-            activeTab: '1',
-            showConfirmation: false,
-            shirtsInCart: [],
-            total: 0,
-            openDesign: false,
-            shirtToEdit: {
-                name: 'untitled_design',
-                price: 18.99,
-                quantity: 0,
-                subtotal: 0,
-                shirtStyle: 'MensShirt',
-                shirtColor: { name: 'white', color: '#FFFFFF' },
-                text: '',
-                textColor: { name: 'white', color: '#FFFFFF' },
-                font: "'Montserrat', sans-serif",
-                graphic: '',
-                graphicColor: { name: 'white', color: '#FFFFFF' },
-            },
-            action: ''
-        };
-    }
-
-    componentDidMount() {
-        this.props.actions.fetchShirts();
-    }
-
-    handleOutsideClick = (e) => {
+    const handleOutsideClick = (event) => {
         // ignore clicks on the component itself
-        if ((e.target.className !== 'overlay')) {
+        if ((event.target.className !== 'overlay')) {
             return;
         }
-        this.closeCart();
+        closeCart();
     }
 
-    openCart = () => {
+    const openCart = () => {
         console.log('Cart Open');
-        this.refs.cart.style.width = "100%";
-        this.refs.overlay.style.display = "block";
+        cartRef.current.style.width = "100%";
+        overlayRef.current.style.display = "block";
 
-        document.addEventListener('click', this.handleOutsideClick, false);
+        document.addEventListener('click', handleOutsideClick, false);
     }
 
-    closeCart = () => {
+    const closeCart = () => {
         console.log('Cart Closed');
-        this.refs.cart.style.width = "0";
-        this.refs.overlay.style.display = "none";
-        this.refs.shipping.style.width = "0";
-        this.refs.cart.style.right = "0";
-        this.refs.shipping.style.right = "0";
-        this.refs.shippingOverlay.style.display = "none";
-        this.refs.cartOverlay.style.display = "none";
-        this.refs.payment.style.width = "0";
-        this.setState({
-            showConfirmation: false
-        });
-        document.removeEventListener('click', this.handleOutsideClick, false);
+        cartRef.current.style.width = "0";
+        overlayRef.current.style.display = "none";
+        shippingRef.current.style.width = "0";
+        cartRef.current.style.right = "0";
+        shippingRef.current.style.right = "0";
+        shippingOverlayRef.current.style.display = "none";
+        cartOverlayRef.current.style.display = "none";
+        paymentRef.current.style.width = "0";
+        setShowConfirmation(false);
+        document.removeEventListener('click', handleOutsideClick, false);
     }
 
-    openShipping = () => {
+    const openShipping = () => {
         console.log('Go To Shipping');
-        this.refs.cart.style.right = "385px";
-        this.refs.shipping.style.width = "100%";
-        this.refs.cartOverlay.style.display = "block";
-        this.refs.cartOverlay.style.right = "385px";
+        cartRef.current.style.right = "385px";
+        shippingRef.current.style.width = "100%";
+        cartOverlayRef.current.style.display = "block";
+        cartOverlayRef.current.style.right = "385px";
     }
 
-    openPayment = () => {
+    const openPayment = () => {
         console.log('Go To Payment');
-        this.refs.cart.style.right = "770px";
-        this.refs.cartOverlay.style.right = "770px";
-        this.refs.payment.style.width = "100%";
-        this.refs.shipping.style.right = "385px";
-        this.refs.shippingOverlay.style.display = "block";
+        cartRef.current.style.right = "770px";
+        cartOverlayRef.current.style.right = "770px";
+        paymentRef.current.style.width = "100%";
+        shippingRef.current.style.right = "385px";
+        shippingOverlayRef.current.style.display = "block";
     }
 
-    checkout = () => {
+    const checkout = () => {
         console.log('Go To Checkout');
-        this.props.shirts.forEach(shirt => {
+        props.shirts.forEach(shirt => {
             shirt.quantity = 0;
         });
-        this.setState({
-            showConfirmation: true,
-            shirtsInCart: [],
-        });
-        this.refs.payment.style.width = "100%";
-        this.refs.cart.style.width = "0";
-        this.refs.shipping.style.width = "0";
-        this.refs.shippingOverlay.style.display = "none";
-        this.refs.cartOverlay.style.display = "none";
+        setShowConfirmation(true);
+        setShirtsInCart([]);
+        paymentRef.current.style.width = "100%";
+        cartRef.current.style.width = "0";
+        shippingRef.current.style.width = "0";
+        shippingOverlayRef.current.style.display = "none";
+        cartOverlayRef.current.style.display = "none";
     }
 
-    goToCatalog = () => {
+    const goToCatalog = () => {
         console.log('Go Back To Catalog');
         // Reset fixed positioning for all 3 side nav components and set showConfirmation to false 
-        this.refs.payment.style.width = "0";
-        this.refs.overlay.style.display = "none";
-        this.refs.cart.style.width = "0";
-        this.refs.cart.style.right = "0";
-        this.refs.shipping.style.width = "0";
-        this.refs.shipping.style.right = "0";
-        this.setState({
-            showConfirmation: false,
-        });
+        paymentRef.current.style.width = "0";
+        overlayRef.current.style.display = "none";
+        cartRef.current.style.width = "0";
+        cartRef.current.style.right = "0";
+        shippingRef.current.style.width = "0";
+        shippingRef.current.style.right = "0";
+        setShowConfirmation(false);
     }
 
-    addToCart = (shirt) => {
+    const addToCart = (shirt) => {
         console.log('Add to Cart');
-        let cartItems = this.state.shirtsInCart;
+        let cartItems = shirtsInCart;
         let index = cartItems.findIndex(item => {
             return shirt.image === item.image;
         });
@@ -160,37 +139,31 @@ export default class Catalog extends Component {
             cartItems.push(shirt);
         }
         // Update the state with new list
-        this.setState({
-            shirtsInCart: cartItems
-        });
+        setShirtsInCart(cartItems);
     }
 
-    editShirt = (shirt) => {
+    const editShirt = (shirt) => {
         console.log('Edit Shirt');
-        this.setState({
-            openDesign: true,
-            shirtToEdit: shirt,
-            action: 'edit'
-        });
+        setOpenDesign(true);
+        setShirtToEdit(shirt);
+        setAction('edit');
     }
 
-    removeFromCart = (shirt) => {
+    const removeFromCart = (shirt) => {
         console.log('Remove');
         shirt.quantity = 0;
-        let cartItems = this.state.shirtsInCart;
+        let cartItems = shirtsInCart;
         let index = cartItems.findIndex(item => {
             return shirt.image === item.image;
         });
         cartItems.splice(index, 1);
-        this.setState({
-            shirtsInCart: cartItems
-        });
+        setShirtsInCart(cartItems);
     }
 
-    updateQuantity = (shirt) => {
+    const updateQuantity = (shirt) => {
         // Update the quantity from the input text box
         console.log('Update');
-        let cartItems = this.state.shirtsInCart;
+        let cartItems = shirtsInCart;
         let index = cartItems.findIndex(item => {
             return shirt.image === item.image;
         });
@@ -198,35 +171,29 @@ export default class Catalog extends Component {
             cartItems[index].quantity = shirt.quantity;
             cartItems[index].subtotal = cartItems[index].quantity * cartItems[index].price;
         }
-        this.setState({
-            shirtsInCart: cartItems
-        });
+        setShirtsInCart(cartItems);
     }
 
-    newShirtDesign = () => {
-        this.setState({
-            openDesign: true,
-            action: 'new'
-        });
+    const newShirtDesign = () => {
+        setOpenDesign(true);
+        setAction('new');
     }
 
-    setShirtTitle = (event) => {
-        let shirt = this.state.shirtToEdit;
+    const setShirtTitle = (event) => {
+        let shirt = shirtToEdit;
         shirt.name = event.target.value;
-        this.setState({
-            shirtToEdit: shirt
-        });
+        setShirtToEdit(shirt);
     }
 
-    saveShirtDesign = () => {
-        let newShirt = this.state.shirtToEdit;
+    const saveShirtDesign = () => {
+        let newShirt = shirtToEdit;
         console.log('Shirt Save');
 
-        let list = this.props.shirts;
+        let list = props.shirts;
         newShirt.image = newShirt.shirtStyle + '-' + newShirt.shirtColor.name.toLowerCase();
         newShirt.gender = newShirt.shirtStyle[0];
 
-        if (this.state.action === 'new') {
+        if (action === 'new') {
             newShirt.id = list.length + 1;
             newShirt.description = 'Custom Shirt Design';
             list.push(newShirt);
@@ -248,24 +215,19 @@ export default class Catalog extends Component {
             graphicColor: { name: 'white', color: '#FFFFFF' },
         };
 
-        this.setState({
-            openDesign: false,
-            action: '',
-            // Reset to a blank shirt
-            shirtToEdit: blankShirt
-        });
+        setOpenDesign(false);
+        setAction('');
+        setShirtToEdit(blankShirt); //Reset to blank shirt
     }
 
-    selectStyle(style) {
-        let shirt = this.state.shirtToEdit;
+    const selectStyle = (style) => {
+        let shirt = shirtToEdit;
         shirt.shirtStyle = style;
-        this.setState({
-            shirtToEdit: shirt
-        });
+        setShirtToEdit(shirt);
     }
 
-    selectColor(color, attribute) {
-        let shirt = this.state.shirtToEdit;
+    const selectColor = (color, attribute) => {
+        let shirt = shirtToEdit;
         switch (attribute) {
             case 'shirt':
                 shirt.shirtColor = color;
@@ -279,42 +241,39 @@ export default class Catalog extends Component {
             default:
                 break;
         }
-        this.setState({
-            shirtToEdit: shirt
-        })
+        setShirtToEdit(shirt);
     }
 
-    selectGraphic = (graphic) => {
-        let shirt = this.state.shirtToEdit;
+    const selectGraphic = (graphic) => {
+        let shirt = shirtToEdit;
         shirt.graphic = graphic;
-        this.setState({ shirtToEdit: shirt });
+        setShirtToEdit(shirt);
     }
 
-    addShirtText = (text) => {
-        let shirt = this.state.shirtToEdit;
+    const addShirtText = (text) => {
+        let shirt = shirtToEdit;
         shirt.text = text;
-        this.setState({ shirtToEdit: shirt });
+        setShirtToEdit(shirt);
     }
 
-    changeTextFont = (font) => {
-        let shirt = this.state.shirtToEdit;
+    const changeTextFont = (font) => {
+        let shirt = shirtToEdit;
         shirt.font = font;
-        this.setState({ shirtToEdit: shirt });
+        setShirtToEdit(shirt);
     }
 
-    render() {
         return (
             <div>
-                <div id="cart" className="sidenav-cart" ref="cart">
-                    <div className="cart-overlay" ref="cartOverlay"></div>
-                    <Cart openShipping={this.openShipping} closeCart={this.closeCart} shirtsInCart={this.state.shirtsInCart} removeFromCart={this.removeFromCart} updateQuantity={this.updateQuantity} />
+                <div id="cart" className="sidenav-cart" ref={cartRef}>
+                    <div className="cart-overlay" ref={cartOverlayRef}></div>
+                    <Cart openShipping={openShipping} closeCart={closeCart} shirtsInCart={shirtsInCart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
                 </div>
-                <div className="sidenav-shipping" ref="shipping">
-                    <div className="shipping-overlay" ref="shippingOverlay"></div>
-                    <SidenavShipping openPayment={this.openPayment} />
+                <div className="sidenav-shipping" ref={shippingRef}>
+                    <div className="shipping-overlay" ref={shippingOverlayRef}></div>
+                    <SidenavShipping openPayment={openPayment} />
                 </div>
-                <div className={!this.state.showConfirmation ? "sidenav-payment" : "sidenav-confirmation"} ref="payment">
-                    {!this.state.showConfirmation ? <Payment checkout={this.checkout} /> : <Confirmation goToCatalog={this.goToCatalog} />}
+                <div className={!showConfirmation ? "sidenav-payment" : "sidenav-confirmation"} ref={paymentRef}>
+                    {!showConfirmation ? <Payment checkout={checkout} /> : <Confirmation goToCatalog={goToCatalog} />}
                 </div>
                 <Navbar color="faded" light>
                     <Row className="nav-toggle-btn">
@@ -323,46 +282,45 @@ export default class Catalog extends Component {
                         <img className="nav-logo" src={navLogo} alt="logo" />
                     </Row>
                     <Row className="cart-btn-container">
-                        {this.state.openDesign ?
+                        {openDesign ?
                             <div>
-                                <input className="input-shirt-title" type="text" value={this.state.shirtToEdit.name} onChange={this.setShirtTitle} />
-                                <button className="primary-btn nav-btn" onClick={() => { this.saveShirtDesign(); }}>SAVE DESIGN</button>
+                                <input className="input-shirt-title" type="text" value={shirtToEdit.name} onChange={setShirtTitle} />
+                                <button className="primary-btn nav-btn" onClick={() => { saveShirtDesign(); }}>SAVE DESIGN</button>
                             </div> :
-                            <button className="primary-btn nav-btn" onClick={() => { this.newShirtDesign(); }}>NEW DESIGN</button>}
+                            <button className="primary-btn nav-btn" onClick={() => { newShirtDesign(); }}>NEW DESIGN</button>}
 
 
                         <div className="vr"></div>
-                        <Row className="cart-btn" onClick={() => { this.openCart(); }}>
+                        <Row className="cart-btn" onClick={() => { openCart(); }}>
                             <div className="nav-icon-basket"></div>
-                            <div className="cart-count">{this.state.shirtsInCart.length}</div>
+                            <div className="cart-count">{shirtsInCart.length}</div>
                         </Row>
                     </Row>
                 </Navbar>
                 <div>
-                    <div className="overlay" ref="overlay"></div>
-                    {this.state.openDesign ? 
+                    <div className="overlay" ref={overlayRef}></div>
+                    {openDesign ? 
                     <Design 
-                        action={this.state.action} 
-                        shirtToEdit={this.state.shirtToEdit} 
-                        saveShirtDesign={this.saveShirtDesign} 
-                        selectStyle={this.selectStyle} 
-                        selectColor={this.selectColor} 
-                        selectGraphic={this.selectGraphic} 
-                        addShirtText={this.addShirtText} 
-                        changeTextFont={this.changeTextFont} 
+                        action={action} 
+                        shirtToEdit={shirtToEdit} 
+                        saveShirtDesign={saveShirtDesign} 
+                        selectStyle={selectStyle} 
+                        selectColor={selectColor} 
+                        selectGraphic={selectGraphic} 
+                        addShirtText={addShirtText} 
+                        changeTextFont={changeTextFont} 
                     /> 
                     : 
                     <div>
-                        {this.props.fetchingShirts ? <h1 style={{color: 'red'}}>FETCHING SHIRTS</h1> : ''}
+                        {props.fetchingShirts ? <h1 style={{color: 'red'}}>FETCHING SHIRTS</h1> : ''}
                         <CatalogTabs 
-                            shirtList={this.props.shirts} 
-                            addToCart={this.addToCart} 
-                            editShirt={this.editShirt}
+                            shirtList={props.shirts} 
+                            addToCart={addToCart} 
+                            editShirt={editShirt}
                         />
                     </div>
                     }
                 </div>
             </div>
         );
-    }
 }

@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import './Confirmation.css';
 
 const shirtIcon = require(`../../images/ShirtIcon.svg`);
-class Confirmation extends Component {
+function Confirmation(props) {
 
-    goToCatalog = () => {
-        this.props.goToCatalog();
+    const goToCatalog = () => {
+        props.goToCatalog();
     }
-    render() {
         return (
             <div className="confirmation-container">
                 <div className="confirmation-shirt-icon">
@@ -15,11 +14,10 @@ class Confirmation extends Component {
                 </div>
                 <div className="confirmation-title">Your order is complete.</div>
                 <div className="text-center">
-                    <button type="submit" className="primary-btn" onClick={() => { this.goToCatalog(); }}>SHOP SOME MORE</button>
+                    <button type="submit" className="primary-btn" onClick={() => { goToCatalog(); }}>SHOP SOME MORE</button>
                 </div>
             </div>
         )
-    }
 }
 
 export default Confirmation;
