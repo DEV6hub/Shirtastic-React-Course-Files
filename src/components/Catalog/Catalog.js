@@ -38,8 +38,8 @@ export default function Catalog(props) {
 
     useEffect(() => { //This replaces the lifecycle hooks
         props.actions.fetchShirts();
-      }, {}); //we pass an empty object/empty array as a 2nd arg to only run once
-      //else if we pass a variable, component will re-render again if the value changes
+      }, []); //we pass an empty array as a 2nd arg to only run once
+      //else if we pass a variable/props, component will re-render again if the value changes
 
     const cartRef = useRef();
     const overlayRef = useRef();

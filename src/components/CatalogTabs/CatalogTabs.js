@@ -7,7 +7,6 @@ import Shirt from '../Shirt/Shirt';
 
 function CatalogTabs(props) {
     const [activeTab, setActiveTab] = useState('1')
-    // TODO: Change the above hook to share with Design.js' activeTab hook
     
 
     const addToCart = (shirt) => {

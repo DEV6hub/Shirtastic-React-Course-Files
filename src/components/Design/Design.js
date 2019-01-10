@@ -20,7 +20,7 @@ function Design(props){
             // this.makeDraggable(this.refs.text);
             // this.makeDraggable(this.refs.graphicImage);
         }
-    }, {});
+    }, []);
 
     const selectStyle = (style) => {
         props.selectStyle(style);
