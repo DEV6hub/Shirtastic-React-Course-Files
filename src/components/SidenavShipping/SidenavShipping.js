@@ -77,7 +77,7 @@ class SidenavShipping extends Component{
                         <Row className="row-item">
                             <Col className="form-group">
                                 <label htmlFor="name">Name</label>
-                                <input type="text" name="name" value={this.state.name} className="form-control form-control-sm"/>
+                                <input type="text" name="name" value={this.state.name} className="form-control form-control-sm" onChange={this.handleInputChange.bind(this)}/>
                             </Col>
                         </Row>
                         <Row className="row-item">
