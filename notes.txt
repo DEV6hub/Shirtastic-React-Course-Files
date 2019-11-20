@@ -1,0 +1,37 @@
+observations
+
+NAVBAR
+selecting the hamburger and the icon don't do anything.
+Logo in the navbar bleeds out of the navbar itself
+
+LOGIN PAGE (Home page)
+
+When signing up,
+I get a password message saying:
+ it should contain numbers,
+ it should contain special characters
+ Looks good
+all at once.  As the user types, these should be checked onChange
+
+/catalog Page
+After signing in, "FETCHING SHIRTS" remains displayed at the top
+There is not way to logout...no way to get back to the login screen
+There is no indicator of who is logged in. The username should be tracked
+
+When clicking the cart, then clicking "Go to shopping"
+ A shipping info slider shows up. 
+  The user is not able to enter their name
+  The user is abl to submit the form when no values are entered
+
+When creating a shirt and adding it to the cart, the price is static at 61.94. This should instead be the calculated based on the price of the shirts.
+
+Application should be codesplit so that if a user does not login, they do not load the entire site. 
+
+Proptypes are not added, so it is unclear what data types are flowing in the application
+
+Mixed strategies: Some functions are bound by being an arrow functions, others are explicitly bound with .bind() Refactor to only use arrow functions
+
+
+
+
+
