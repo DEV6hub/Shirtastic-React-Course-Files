@@ -1,54 +1,49 @@
-import React, { Component } from 'react';
+import React, { useCallback } from 'react';
 import './Cart.css';
 import { Row, Col } from 'reactstrap';
 
 import ShirtInCart from '../ShirtInCart/ShirtInCart';
 
-class Cart extends Component {
+const Cart = ({
+    openShipping, closeCart, shirtsInCart, 
+    removeFromCart, updateQuantity
+}) => {
 
-    openShipping = () => {
-        this.props.openShipping();
-    }
+    const calculateTotal = useCallback(
+        () => {
+            let total = 0;
+            shirtsInCart.forEach((shirt) => {
+                total += shirt.subtotal;
+            });
+            return Math.round(total * 100) / 100;
+        },
+        [shirtsInCart],
+    );
 
-    closeCart = () => {
-        this.props.closeCart();
-    }
-
-    calculateTotal = () => {
-        let total = 0;
-        this.props.shirtsInCart.forEach((shirt) => {
-            total += shirt.subtotal;
-        });
-        return Math.round(total * 100) / 100;
-    }
-
-    render() {
-        return (
-            <div>
-                <div className="cart-container">
-                    <Row className="cart-header">
-                        <Col className="cart-title" xs="8">Shopping Cart</Col>
-                        <Col className="cart-btn" xs="3" onClick={() => { this.closeCart(); }}>
-                            <Row className="cart-btn-row">
-                                <div className="nav-icon-basket"></div>
-                                <div className="cart-count">{this.props.shirtsInCart.length}</div>
-                            </Row>
-                        </Col>
-                    </Row>
-                    <hr />
-                    {this.props.shirtsInCart.map((shirt, index) => (
-                        <div key={index}>
-                            <ShirtInCart shirt={shirt} removeFromCart={this.props.removeFromCart} updateQuantity={this.props.updateQuantity} />
-                            <hr />
-                        </div>
-                    ))}
-                    {this.props.shirtsInCart.length > 0 ? <div className="subtotal">Subtotal:  <span>${this.calculateTotal()}</span></div> : null}
-                    <button type="button" className="primary-btn" onClick={() => { this.openShipping(); }}>GO TO SHIPPING -></button>
-                </div>
+    return (
+        <div>
+            <div className="cart-container">
+                <Row className="cart-header">
+                    <Col className="cart-title" xs="8">Shopping Cart</Col>
+                    <Col className="cart-btn" xs="3" onClick={closeCart}>
+                        <Row className="cart-btn-row">
+                            <div className="nav-icon-basket"></div>
+                            <div className="cart-count">{shirtsInCart.length}</div>
+                        </Row>
+                    </Col>
+                </Row>
+                <hr />
+                {shirtsInCart.map((shirt, index) => (
+                    <div key={index}>
+                        <ShirtInCart shirt={shirt} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
+                        <hr />
+                    </div>
+                ))}
+                {shirtsInCart.length > 0 ? <div className="subtotal">Subtotal:  <span>${calculateTotal()}</span></div> : null}
+                <button type="button" className="primary-btn" onClick={openShipping}>GO TO SHIPPING -></button>
             </div>
-
-        );
-    }
+        </div>
+    );  
 }
 
 export default Cart;

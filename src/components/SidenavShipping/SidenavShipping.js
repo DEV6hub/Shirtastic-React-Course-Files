@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { createUser } from '../../actions';
+import { createUser } from '../../state/actions';
 import './SidenavShipping.css';
 import { Row, Col } from 'reactstrap';
 import { countries, regions } from '../Models/CountriesAndRegions';
